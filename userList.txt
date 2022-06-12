@@ -1,0 +1,4 @@
+1;admin;admin;true
+2;adrian;adrian;true
+3;test;test;false
+4;user;user;false
