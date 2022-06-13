@@ -6,7 +6,7 @@ public class Book {
     private String Title;
     private String Author;
     private int ISBN;
-    private Integer UserID = null;
+    private String User = null;
 
     public Book(String title, String author, int ISBN) {
         ID = Book.getUniqueID();
@@ -15,12 +15,12 @@ public class Book {
         this.ISBN = ISBN;
     }
 
-    public Book(String title, String author, int ISBN, int userID) {
+    public Book(String title, String author, int ISBN, String user) {
         ID = Book.getUniqueID();
         Title = title;
         Author = author;
         this.ISBN = ISBN;
-        UserID = userID;
+        User = user;
     }
 
     public int getID() {
@@ -55,13 +55,14 @@ public class Book {
         this.ISBN = ISBN;
     }
 
-    public int getUserID() {
-        return UserID;
+    public String getUser() {
+        return User;
     }
 
-    public void setUserID(int userID) {
-        UserID = userID;
+    public void setUser(String user) {
+        User = user;
     }
+
 
     private static int getUniqueID() {
         int id = uniqueID;
@@ -72,7 +73,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return ID + ";" + Title + ";" + Author + ";" + ISBN;
+        return ID + ";" + Title + ";" + Author + ";" + ISBN + ";" + User;
     }
 
     public String bookInfo() {

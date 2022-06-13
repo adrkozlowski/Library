@@ -45,22 +45,12 @@ public class BookController {
         dataReader.saveBooks(books, bookPath);
     }
 
-    public void borrowBook(ArrayList<Book> books, ArrayList<Book> borrowedBooks, int bookID, int userID) {
-        if(!borrowedBooks.isEmpty() && !books.isEmpty()) {
-            System.out.println("zaladowano ksiazki z listy");
-            dataReader.loadBooks(borrowedBooks);
-            dataReader.loadBooks(books);
-        }
-        else {
-            System.out.println("zaladowano ksiazki z pliku");
-            books = dataReader.loadBooksFromFile(bookPath);
-            borrowedBooks = dataReader.loadBooksFromFile(borrowedBooksPath);
-        }
-
+    public void borrowBook(ArrayList<Book> books, ArrayList<Book> borrowedBooks, int bookID, String user) {
 
         for(Book book: books) {
             if(book.getID() == bookID) {
-                borrowedBooks.add(new Book(book.getTitle(), book.getAuthor(), book.getISBN(), userID));
+                System.out.println("ksiazka " + book.getTitle() + " zostanie wypozyczona");
+                borrowedBooks.add(new Book(book.getTitle(), book.getAuthor(), book.getISBN(), user));
                 books.remove(book);
                 break;
             }
@@ -70,20 +60,10 @@ public class BookController {
     }
 
     public void returnBook(ArrayList<Book> books, ArrayList<Book> borrowedBooks, int bookID) {
-        if(!borrowedBooks.isEmpty() && !books.isEmpty()) {
-            System.out.println("zaladowano ksiazki z listy");
-            dataReader.loadBooks(borrowedBooks);
-            dataReader.loadBooks(books);
-        }
-        else {
-            System.out.println("zaladowano ksiazki z pliku");
-            books = dataReader.loadBooksFromFile(bookPath);
-            borrowedBooks = dataReader.loadBooksFromFile(borrowedBooksPath);
-        }
 
         for(Book book: borrowedBooks) {
             if(book.getID() == bookID) {
-                books.add(book);
+                books.add(new Book(book.getTitle(), book.getAuthor(), book.getISBN()));
                 borrowedBooks.remove(book);
                 break;
             }

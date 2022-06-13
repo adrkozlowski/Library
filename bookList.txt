@@ -1,4 +1,4 @@
-5;Duma i uprzedzenie;Jane Austen;123456789
-6;Jane Eyre;Charlotte Bronte;456123789
-7;Zabić drozdad;Harper Lee;789546321
-8;Wichrowe Wzgórza;Emily Bronte;123789546
+2;Jane Eyre;Charlotte Bronte;456123789;null
+3;Zabić drozdad;Harper Lee;789546321;null
+4;Wichrowe Wzgórza;Emily Bronte;123789546;null
+5;Duma i uprzedzenie;Jane Austen;123456789;null

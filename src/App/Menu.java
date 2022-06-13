@@ -5,7 +5,6 @@ import Controller.UserController;
 import IO.DataReader;
 import Model.User;
 import Model.Book;
-
 import java.util.ArrayList;
 
 public class Menu {
@@ -22,13 +21,13 @@ public class Menu {
 
         if(!users.isEmpty() && !books.isEmpty()) {
             dataReader.loadUsers(users);
-            dataReader.loadBooks(books);
-            dataReader.loadBooks(borrowedBooks);
+//            dataReader.loadBooks(books);
+//            dataReader.loadBooks(borrowedBooks);
         }
         else {
             users = dataReader.loadUsersFromFile();
-            books = dataReader.loadBooksFromFile("bookList.txt");
-            borrowedBooks = dataReader.loadBooksFromFile("borrowedBookList.txt");
+//            books = dataReader.loadBooksFromFile("bookList.txt");
+//            borrowedBooks = dataReader.loadBooksFromFile("borrowedBookList.txt");
         }
 
         do {
@@ -142,6 +141,17 @@ public class Menu {
 
     private void userMenu(User user, ArrayList<Book> books, ArrayList<Book> borrowedBooks) {
 
+        if(!users.isEmpty() && !books.isEmpty()) {
+//            dataReader.loadUsers(users);
+            dataReader.loadBooks(books);
+            dataReader.loadBooks(borrowedBooks);
+        }
+        else {
+//            users = dataReader.loadUsersFromFile();
+            books = dataReader.loadBooksFromFile("bookList.txt");
+            borrowedBooks = dataReader.loadBooksFromFile("borrowedBookList.txt");
+        }
+
         int bookID;
         System.out.println("czesc " + user.getName());
         do {
@@ -168,14 +178,16 @@ public class Menu {
                     System.out.println("Podaj numer ID książki którą chcesz wypożyczyć");
                     bookID = dataReader.getInt();
 
-                    bookController.borrowBook(books, borrowedBooks,bookID, user.getID());
+                    bookController.borrowBook(books, borrowedBooks,bookID, user.getName());
                     break;
                 case 3:
                     System.out.println("lista moich wypożyczonych książek: ");
                     for(Book book:borrowedBooks) {
-                        if(book.getUserID() == user.getID()) {
+                        if(user.getName().equals(book.getUser())) {
                             System.out.println(book.bookInfo());
                         }
+                        else
+                            System.out.println("Nie masz wypożyczonych książek");
                     }
                     break;
                 case 4:
